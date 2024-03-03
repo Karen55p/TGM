@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Pedido } from "./pedidoController";
 
-
 interface Cliente {
     nome: String,
     cpf: number,

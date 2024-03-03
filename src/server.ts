@@ -1,6 +1,5 @@
 import express, {request, response} from 'express';
 
-
 const { clienteRouter } = require('./routes/clienteRoute')
 const { pedidoRouter } = require('./routes/pedidoRoute')
 const app = express();
