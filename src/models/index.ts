@@ -22,12 +22,43 @@ export async function main() {
             );
     `);
 
+    await db.run(`
+        CREATE TABLE IF NOT EXISTS pedido (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            prazo DATE,
+            material TEXT,
+            altura FLOAT,
+            largura FLOAT,
+            comprimento FLOAT, 
+            mobilia TEXT,
+            sugest TEXT,
+            id_cliente INTEGER,
+            FOREIGN KEY (id_cliente) references cliente(id)
+        );
+    `);
+
     const pragm = async () => {
-    const rows = await db.all('pragma table_info(cliente)');
+    const rows = await db.all('pragma table_info(pedido)');
     console.log(rows);
     }
-    /*pragm()*/
+
+    const select = async () => {
+        const rows = await db.all('select * from pedido');
+        console.log(rows);
+        }
+
+    /*const drop = async () =>{
+        await db.run(`
+        DROP TABLE pedido;
+        `);
+    console.log('tabela deletada');
+    };
+
+    //drop()
+    //pragm()
     /*insertCliente('aa', 'aa', 123, 'ewq', 'nuh');*/
+
+    //select()
     
 }
 

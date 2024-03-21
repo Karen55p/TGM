@@ -12,6 +12,7 @@ export const insertCliente = async (nome: string, telefone: string, cpf: number,
             console.log('Dados inseridos com sucesso!');
         }
     });
+    db.close();
 };
 
 export const getClientes = async () => {
@@ -22,6 +23,7 @@ export const getClientes = async () => {
     } catch (err: any) {
         console.error('Erro ao obter dados da tabela cliente:', err.message);
     }
+    db.close();
 };
 
 export const updateClientes = async (id: string, nome: string, telefone: string, cpf: number, endereco: string, obs: string) => {
@@ -35,16 +37,18 @@ export const updateClientes = async (id: string, nome: string, telefone: string,
     } catch (err: any) {
         console.error('Erro ao atualizar cliente:', err.message);
     }
+    db.close();
 };
 
 
 export const deleteClientes = async (id: string) => {
+    const db = await openDb();
     try {
-        const db = await openDb();
         await db.run('DELETE FROM cliente WHERE id = ?', id);
         console.log(`Cliente com ID ${id} deletado com sucesso!`);
     } catch (err: any) {
         console.error('Erro ao deletar cliente:', err.message);
     }
+    db.close();
 };
 

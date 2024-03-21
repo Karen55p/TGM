@@ -1,0 +1,1 @@
+import { openDb } from './index';

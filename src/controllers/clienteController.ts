@@ -36,7 +36,7 @@ export class ClienteController {
         try {
             const { id } = req.params;
             const updatedCliente: Cliente = req.body;
-            await updateClientes(id, updatedCliente.nome, updatedCliente.telefone, updatedCliente.cpf, updatedCliente.endereco, updatedCliente.obs); // Aguarde a conclusão da função
+            await updateClientes(id, updatedCliente.nome, updatedCliente.telefone, updatedCliente.cpf, updatedCliente.endereco, updatedCliente.obs);
     
             console.log(`Cliente com ID ${id} atualizado com sucesso!`);
             return res.status(200).json({ message: `Cliente com ID ${id} atualizado com sucesso!` });
@@ -49,7 +49,7 @@ export class ClienteController {
     deleteCliente = async (req: Request, res: Response) => {
         try {
             const { id } = req.params;
-            await deleteClientes(id); // Chame a função com o ID
+            await deleteClientes(id);
     
             console.log(`Cliente com ID ${id} deletado com sucesso!`);
             return res.status(200).json({ message: `Cliente com ID ${id} deletado com sucesso!` });
