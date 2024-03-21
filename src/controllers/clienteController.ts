@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { insertCliente } from "../models/clienteModel";
-import { getClientes } from "../models/clienteModel";
+import { selectCliente } from "../models/clienteModel";
 import { deleteClientes } from "../models/clienteModel";
 import { updateClientes } from "../models/clienteModel";
 
@@ -13,12 +13,10 @@ export interface Cliente {
     obs: string,
 };
 
-export let clientes: Cliente[] = [];
-
 export class ClienteController {
 
     getCliente(req: Request, res: Response){
-        getClientes().then((rows) => {
+        selectCliente().then((rows) => {
             return res.json(rows);
         })
     };
@@ -27,9 +25,6 @@ export class ClienteController {
         const newCliente: Cliente = req.body;
         insertCliente(newCliente.nome, newCliente.telefone, newCliente.cpf, newCliente.endereco, newCliente.obs);
         return res.status(201).json({ message: 'Novo cliente criado com sucesso!' });
-        
-        /*clientes.push(newCliente);
-        */
     };
 
     updateCliente = async (req: Request, res: Response) => {
@@ -58,7 +53,6 @@ export class ClienteController {
             return res.status(500).json({ error: 'Erro ao deletar cliente.' });
         }
     };
-
 
 };
 

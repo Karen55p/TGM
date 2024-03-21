@@ -15,7 +15,7 @@ export const insertCliente = async (nome: string, telefone: string, cpf: number,
     db.close();
 };
 
-export const getClientes = async () => {
+export const selectCliente = async () => {
     const db = await openDb();
     try {
         const rows = await db.all('SELECT * FROM cliente');

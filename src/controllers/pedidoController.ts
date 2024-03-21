@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import { clientes } from './clienteController';
-import { Cliente } from './clienteController';
 import { insertPedidos } from "../models/pedidoModel";
 import { getPedidos } from "../models/pedidoModel";
 import { updatePedidos } from "../models/pedidoModel";
@@ -17,8 +15,6 @@ export interface Pedido{
     sugest: string,
     id_cliente: number
 }
-
-let pedidos: Pedido[] = [];
 
 export class PedidoController {
 

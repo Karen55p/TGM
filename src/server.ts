@@ -1,4 +1,4 @@
-import express, {request, response} from 'express';
+import express from 'express';
 import { main } from './models/index';
 
 const { clienteRouter } = require('./routes/clienteRoute')
