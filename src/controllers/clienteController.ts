@@ -4,7 +4,7 @@ import { selectCliente } from "../models/clienteModel";
 import { deleteClientes } from "../models/clienteModel";
 import { updateClientes } from "../models/clienteModel";
 
-export interface Cliente {
+interface Cliente {
     id: number,
     nome: string,
     telefone: string,
@@ -54,10 +54,4 @@ export class ClienteController {
         }
     };
 
-};
-
-const clienteController = new ClienteController();
-
-module.exports = {
-    clienteController,
 };

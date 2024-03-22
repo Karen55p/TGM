@@ -37,8 +37,18 @@ export async function main() {
         );
     `);
 
+    await db.run(`
+            CREATE TABLE IF NOT EXISTS user (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT,
+                email TEXT,
+                nivel TEXT,
+                senha TEXT
+            );
+    `);
+
     const pragm = async () => {
-    const rows = await db.all('pragma table_info(pedido)');
+    const rows = await db.all('pragma table_info(user)');
     console.log(rows);
     }
 
@@ -52,7 +62,8 @@ export async function main() {
         DROP TABLE pedido;
         `);
     console.log('tabela deletada');
-    };
+    };*/
+
 
     //drop()
     //pragm()

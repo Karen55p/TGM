@@ -4,7 +4,7 @@ import { getPedidos } from "../models/pedidoModel";
 import { updatePedidos } from "../models/pedidoModel";
 import { deletePedidos } from "../models/pedidoModel";
 
-export interface Pedido{
+interface Pedido{
     id: number,
     prazo: Date,
     material: string,
@@ -103,10 +103,4 @@ export class PedidoController {
             res.status(404).json({ error: 'Cliente não encontrado.' });
         }
     }*/
-}
-
-const pedidoController = new PedidoController();
-
-module.exports = {
-    pedidoController,
 };
