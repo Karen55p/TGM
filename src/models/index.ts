@@ -40,7 +40,7 @@ export async function main() {
     await db.run(`
             CREATE TABLE IF NOT EXISTS user (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT,
+                username TEXT UNIQUE,
                 email TEXT,
                 nivel TEXT,
                 senha TEXT
@@ -57,12 +57,12 @@ export async function main() {
         console.log(rows);
         }
 
-    /*const drop = async () =>{
+    const drop = async () =>{
         await db.run(`
-        DROP TABLE pedido;
+        DROP TABLE user;
         `);
     console.log('tabela deletada');
-    };*/
+    };
 
 
     //drop()

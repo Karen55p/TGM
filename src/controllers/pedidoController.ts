@@ -26,7 +26,6 @@ export class PedidoController {
 
     createPedido(req: Request, res: Response){
         const newPedido: Pedido = req.body;
-        //const { id_cliente } = req.params;
         insertPedidos(newPedido.prazo, newPedido.material, newPedido.altura, newPedido.largura, newPedido.comprimento, newPedido.mobilia, newPedido.sugest, newPedido.id_cliente);
         return res.status(201).json({ message: 'Novo pedido criado com sucesso!' });
     };

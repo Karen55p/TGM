@@ -2,16 +2,15 @@ import { openDb } from './index';
 
 export const insertUser = async (username: string, email: string, nivel: string, senha: string) => {
     const db = await openDb();
-    db.run(`
+    try {
+        await db.run(`
         INSERT INTO user (username, email, nivel, senha)
         VALUES (?, ?, ?, ?);
-    `, [username, email, nivel, senha], (err: Error | null) => {
-        	if (err) {
-                console.error('Erro ao inserir dados:', err. message)
-            } else {
-                console.log('Dados inseridos com sucesso!');
-            }
-    });
+    `, [username, email, nivel, senha]);
+    console.log('Dados inseridos com sucesso!');
+    } catch (err: any) {
+        return console.error('Erro ao inserir dados:', err. message)
+    };
     db.close();
 };
 
@@ -49,4 +48,14 @@ export const deleteUsers = async (id: string) => {
         console.error('Erro ao deletar Usuário:', err.message);
     }
     db.close();
+};
+
+export const login = async (username: string, senha: string) => {
+    const db = await openDb();
+    try{
+        const rows = await db.get(`SELECT * FROM user WHERE username = ? AND senha = ?`, username, senha);
+        return (rows);
+    } catch(err: any){
+        console.error('Erro ao fazer login', err.message);
+    }
 };
