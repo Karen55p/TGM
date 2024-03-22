@@ -53,15 +53,15 @@ export class UserController {
         }
     };
 
-    loginUser = async (req: Request, res: Response) => {
+    /*loginUser = async (req: Request, res: Response) => {
         const {username, senha} = req.body;
         login(username, senha).then((rows) => {
             return res.json(rows);
         })
-    };
+    };*/
     
-    /*loginUser = async (req: Request, res: Response) => {
-
+    loginUser = async (req: Request, res: Response) => {
+        const {username, senha} = req.body;
         const user = await login(username, senha);
         if (user) {
             return res.status(200).json({message: `Login realizado com sucesso!`});
@@ -69,6 +69,6 @@ export class UserController {
             return res.status(401).json({message: `Falha no login. Usuário ou senha inválidos.`});
         }
        //return res.status(200).json({message: `Login realizado de ${username} e senha ${senha} com sucesso`})
-    }*/
+    }
 
 };

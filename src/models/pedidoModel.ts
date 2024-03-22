@@ -21,7 +21,7 @@ export const insertPedidos = async (prazo: Date, material: string, altura: numbe
             `, [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente]);
         console.log('Dados inseridos com sucesso!');
     } catch (err: any) {
-        console.error('Erro ao atualizar pedido:', err.message);
+        console.error('Erro ao inserir pedido:', err.message);
     }
 
     db.close();
@@ -34,11 +34,12 @@ export const updatePedidos = async (id: string, prazo: Date, material: string, a
         await db.run(`
         UPDATE pedido SET prazo = ?, material = ?, altura = ?, largura = ?, comprimento = ?, mobilia = ?, sugest = ?, id_cliente = ? WHERE id = ?`,
         [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente, id]
-        );
-        console.log(`Pedido com ID ${id} atualizado com sucesso!`); 
+        );    
     } catch (err: any) {
-        console.error('Erro ao atualizar pedido:', err.message);
-    };
+        console.error('Erro ao atualizar pedido:', err.message)
+    }
+
+
     db.close();
 };
 
