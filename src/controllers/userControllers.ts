@@ -55,7 +55,7 @@ export class UserController {
             return res.status(200).json({ message: `Usuário com ID ${id} deletado com sucesso!` });
         } catch (err: any) {
             console.error('Erro ao deletar usuário:', err.message);
-            return res.status(500).json({ error: 'Erro ao deletar usuário.' });
+            return res.status(500).json({ error: 'Erro ao deletar usuário.' + err.message });
         }
     };
 

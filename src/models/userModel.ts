@@ -22,12 +22,16 @@ export const selectUser = async () => {
         return (rows);
     } catch (err: any) {
         console.error('Erro ao obter dados da tabela user:', err.message);
-    }
+    };
     db.close();
 };
 
 export const updateUsers = async (id: string, userName: string, email: string, nivel: string, senha: string) => {
     const db = await openDb();
+    const user = await db.get('select * from user where id = ?', id)
+    if(!user){
+        throw new Error('id não encontrado')
+    }
     try {
         await db.run(
             'UPDATE user SET userName = ?, email = ?, nivel = ?, senha = ? WHERE id = ?',
@@ -36,18 +40,20 @@ export const updateUsers = async (id: string, userName: string, email: string, n
         console.log(`Usuário com ID ${id} atualizado com sucesso!`);
     } catch (err: any) {
         console.error('Erro ao atualizar usuário:', err.message);
+        throw new Error('Erro ao atualizar usuário');
     }
     db.close();
 };
 
 export const deleteUsers = async (id: string) => {
     const db = await openDb();
-    try {
+    const usuario = await db.get('select * from user where id = ?', id)
+    if(!usuario){
+        throw new Error('usuario não encontrado');
+    } else {
         await db.run('DELETE FROM user WHERE id = ?', id);
-        console.log(`Usuário com ID ${id} deletado com sucesso!`);
-    } catch (err: any) {
-        console.error('Erro ao deletar Usuário:', err.message);
     }
+
     db.close();
 };
 
