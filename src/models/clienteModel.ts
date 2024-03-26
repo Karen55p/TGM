@@ -19,13 +19,11 @@ export const insertCliente = async (nome: string, telefone: string, cpf: number,
 
 export const selectCliente = async () => {
     const db = await openDb();
-    try {
-        const rows = await db.all('SELECT * FROM cliente');
-        return (rows);
-    } catch (err: any) {
-        console.error('Erro ao obter dados da tabela cliente:', err.message);
-    }
-    db.close();
+    const rows = await db.all('SELECT * FROM cliente');
+        if(rows){
+            return (rows);
+        }
+        db.close();
 };
 
 export const updateClientes = async (id: string, nome: string, telefone: string, cpf: number, endereco: string, obs: string) => {
