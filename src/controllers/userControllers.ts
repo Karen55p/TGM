@@ -15,10 +15,16 @@ interface User {
 
 export class UserController {
 
-    createUser(req: Request, res: Response){
-        const newUser: User = req.body;
-        insertUser(newUser.username, newUser.email, newUser.nivel, newUser.senha);
-        return res.status(201).json({ message: 'Novo usuário cadastrado com sucesso!' });
+    createUser = async (req: Request, res: Response) => {
+        try{
+            const newUser: User = req.body;
+            await insertUser(newUser.username, newUser.email, newUser.nivel, newUser.senha);
+            return res.status(201).json({ message: 'Novo usuário cadastrado com sucesso!' });
+        } catch (err: any){
+            console.error('Erro ao criar usuário:' + err.message);
+            return res.status(500).json({ error: 'Erro ao criar usuário.' + err.message});
+        }
+
     };
 
     getUser(req: Request, res: Response){

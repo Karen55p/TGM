@@ -31,7 +31,7 @@ export class PedidoController {
             return res.status(201).json({ message: 'Novo pedido criado com sucesso!' });
         } catch (err: any | null){
             console.error('Erro ao criar pedido:' + err.message);
-            return res.status(500).json({ error: 'Erro ao criar pedido.' });
+            return res.status(500).json({ error: 'Erro ao criar pedido.' + err.message});
         }
 
     };

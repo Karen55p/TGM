@@ -7,9 +7,10 @@ export const insertUser = async (username: string, email: string, nivel: string,
         INSERT INTO user (username, email, nivel, senha)
         VALUES (?, ?, ?, ?);
     `, [username, email, nivel, senha]);
-    console.log('Dados inseridos com sucesso!');
-    } catch (err: any) {
-        return console.error('Erro ao inserir dados:', err. message)
+
+    } catch (err) {
+        console.log(err);
+        throw new Error('Usuário não inserido')
     };
     db.close();
 };

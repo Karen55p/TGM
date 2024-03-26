@@ -23,7 +23,7 @@ export const insertPedidos = async (prazo: Date, material: string, altura: numbe
             `, [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente]);
     } catch (err) {
         console.error(err);
-        throw new Error('msg')
+        throw new Error("Cliente não encontrado")
     }
 
     db.close();
