@@ -3,16 +3,17 @@ import { openDb } from './index';
 
 export const insertCliente = async (nome: string, telefone: string, cpf: number, endereco: string, obs: string) => {
     const db = await openDb();
+
+    if (!(nome || telefone || cpf || endereco)){
+        throw error;
+    } else {
         await db.get(`
         INSERT INTO cliente (nome, telefone, cpf, endereco, obs) 
         VALUES (?, ?, ?, ?, ?);
-        `, [nome, telefone, cpf, endereco, obs], (err: Error | any) => {
-            if (err) {
-                throw new Error(err.message)
-            } else {
-                console.log('Dados inseridos com sucesso!');
-            }
-        });
+        `, [nome, telefone, cpf, endereco, obs]
+        );
+    }
+
     db.close();
 };
 
