@@ -47,7 +47,7 @@ export class PedidoController {
             return res.status(200).json({ message: `Pedido com ID ${id} do cliente com ID ${id_cliente} atualizado com sucesso!` });
         } catch (err: any | null){
             console.error('Erro ao atualizar pedido:', err.message);
-            return res.status(500).json({ error: 'Erro ao atualizar pedido.' });
+            return res.status(500).json({ error: 'Erro ao atualizar pedido.' + err.message});
         }
     };
 

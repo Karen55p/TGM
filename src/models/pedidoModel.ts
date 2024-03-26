@@ -31,12 +31,16 @@ export const insertPedidos = async (prazo: Date, material: string, altura: numbe
 
 export const updatePedidos = async (id: string, prazo: Date, material: string, altura: number, largura: number, comprimento: number, mobilia: string, sugest: string, id_cliente: number) => {
     const db = await openDb();
+    const pedido = await db.get('select * from pedido where id = ? AND id_cliente = ?', id, id_cliente);
+    if(!pedido){
+        throw new Error('Pedido não encontrado');
+    }
     try {
         await db.run('PRAGMA foreign_keys = ON;');
         await db.run(`
         UPDATE pedido SET prazo = ?, material = ?, altura = ?, largura = ?, comprimento = ?, mobilia = ?, sugest = ?, id_cliente = ? WHERE id = ?`,
         [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente, id]
-        );    
+        ); 
     } catch (err) {
         console.error(err)
         throw new Error('msg')
