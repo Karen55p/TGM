@@ -24,10 +24,16 @@ export class PedidoController {
         })
     };
 
-    createPedido(req: Request, res: Response){
-        const newPedido: Pedido = req.body;
-        insertPedidos(newPedido.prazo, newPedido.material, newPedido.altura, newPedido.largura, newPedido.comprimento, newPedido.mobilia, newPedido.sugest, newPedido.id_cliente);
-        return res.status(201).json({ message: 'Novo pedido criado com sucesso!' });
+    createPedido = async (req: Request, res: Response) => {
+        try{
+            const newPedido: Pedido = req.body;
+            await insertPedidos(newPedido.prazo, newPedido.material, newPedido.altura, newPedido.largura, newPedido.comprimento, newPedido.mobilia, newPedido.sugest, newPedido.id_cliente);
+            return res.status(201).json({ message: 'Novo pedido criado com sucesso!' });
+        } catch (err: any | null){
+            console.error('Erro ao criar pedido:' + err.message);
+            return res.status(500).json({ error: 'Erro ao criar pedido.' });
+        }
+
     };
 
     updatePedido = async (req: Request, res: Response) => {

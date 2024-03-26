@@ -1,4 +1,5 @@
 import { openDb } from "./index";
+import { error } from 'console';
 
 export const getPedidos = async () => {
     const db = await openDb();
@@ -13,15 +14,16 @@ export const getPedidos = async () => {
 
 export const insertPedidos = async (prazo: Date, material: string, altura: number, largura: number, comprimento: number, mobilia: string, sugest: string, id_cliente: number) => {
     const db = await openDb();
+
     try {
         await db.run('PRAGMA foreign_keys = ON;');
         await db.run(`
             INSERT INTO pedido (prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?);
             `, [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente]);
-        console.log('Dados inseridos com sucesso!');
-    } catch (err: any) {
-        console.error('Erro ao inserir pedido:', err.message);
+    } catch (err) {
+        console.error(err);
+        throw new Error('msg')
     }
 
     db.close();
