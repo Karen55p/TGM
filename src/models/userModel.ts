@@ -57,5 +57,6 @@ export const login = async (username: string, senha: string) => {
         return (rows);
     } catch(err: any){
         console.error('Erro ao fazer login', err.message);
-    };
+    }
+    db.close();
 };

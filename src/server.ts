@@ -7,7 +7,7 @@ import { pedidoRouter } from './routes/pedidoRoute';
 const app = express();
 const port = 8001;
 
-let b = '°o°'
+let b = `°O°`
 
 app.use(express.json());
 app.use(clienteRouter);

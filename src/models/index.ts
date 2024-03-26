@@ -14,10 +14,10 @@ export async function main() {
     await db.run(`
         CREATE TABLE IF NOT EXISTS cliente (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT,
-            telefone TEXT,
-            cpf INTEGER,
-            endereco TEXT,
+            nome TEXT not null,
+            telefone TEXT not null,
+            cpf INTEGER not null,
+            endereco TEXT not null,
             obs TEXT
             );
     `);
@@ -30,9 +30,9 @@ export async function main() {
             altura FLOAT,
             largura FLOAT,
             comprimento FLOAT, 
-            mobilia TEXT,
+            mobilia TEXT not null,
             sugest TEXT,
-            id_cliente INTEGER,
+            id_cliente INTEGER not null,
             FOREIGN KEY (id_cliente) references cliente(id)
         );
     `);
@@ -40,10 +40,10 @@ export async function main() {
     await db.run(`
             CREATE TABLE IF NOT EXISTS user (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT UNIQUE,
-                email TEXT,
-                nivel TEXT,
-                senha TEXT
+                username TEXT UNIQUE not null,
+                email TEXT not null,
+                nivel TEXT not null,
+                senha TEXT not null
             );
     `);
 
@@ -64,12 +64,21 @@ export async function main() {
     console.log('tabela deletada');
     };
 
+    const tables = async () => {
+        const rows = await db.run(`
+        SELECT name FROM sqlite_master WHERE type='table';
+        `);
+        console.log(rows);
+    }
+    //SELECT name FROM sqlite_master WHERE type='table';
 
     //drop()
     //pragm()
     /*insertCliente('aa', 'aa', 123, 'ewq', 'nuh');*/
 
     //select()
+
+    //tables()
     
 }
 

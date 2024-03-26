@@ -22,9 +22,14 @@ export class ClienteController {
     };
 
     createCliente(req: Request, res: Response){
-        const newCliente: Cliente = req.body;
-        insertCliente(newCliente.nome, newCliente.telefone, newCliente.cpf, newCliente.endereco, newCliente.obs);
-        return res.status(201).json({ message: 'Novo cliente criado com sucesso!' });
+        try {
+            const newCliente: Cliente = req.body;
+            insertCliente(newCliente.nome, newCliente.telefone, newCliente.cpf, newCliente.endereco, newCliente.obs);
+            return res.status(201).json({ message: 'Novo cliente criado com sucesso!' });
+        } catch (err: any | null){
+            return res.status(480).json({ message: 'Erro no cadastro', err})
+        }
+
     };
 
     updateCliente = async (req: Request, res: Response) => {
@@ -37,7 +42,7 @@ export class ClienteController {
             return res.status(200).json({ message: `Cliente com ID ${id} atualizado com sucesso!` });
         } catch (err: any) {
             console.error('Erro ao atualizar cliente:', err.message);
-            return res.status(500).json({ error: 'Erro ao atualizar cliente.' });
+            return res.status(500).json({ error: 'Erro ao atualizar cliente. ' + err.message });
         }
     };
 
@@ -50,7 +55,7 @@ export class ClienteController {
             return res.status(200).json({ message: `Cliente com ID ${id} deletado com sucesso!` });
         } catch (err: any) {
             console.error('Erro ao deletar cliente:', err.message);
-            return res.status(500).json({ error: 'Erro ao deletar cliente.' });
+            return res.status(500).json({ error: 'Erro ao deletar cliente. ' + err.message });
         }
     };
 

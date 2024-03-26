@@ -50,7 +50,7 @@ export class PedidoController {
             const { id } = req.params;
             await deletePedidos(id);
 
-            console.log(`Pedido com ID ${id} deletado com sucesso!`);
+            console.log(`Pedido com ID ${id}   com sucesso!`);
             return res.status(200).json({ message: `Pedido com ID ${id} deletado com sucesso!` });
 
         } catch (err: any){
