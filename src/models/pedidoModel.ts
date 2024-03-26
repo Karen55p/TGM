@@ -37,8 +37,9 @@ export const updatePedidos = async (id: string, prazo: Date, material: string, a
         UPDATE pedido SET prazo = ?, material = ?, altura = ?, largura = ?, comprimento = ?, mobilia = ?, sugest = ?, id_cliente = ? WHERE id = ?`,
         [prazo, material, altura, largura, comprimento, mobilia, sugest, id_cliente, id]
         );    
-    } catch (err: any) {
-        console.error('Erro ao atualizar pedido:', err.message)
+    } catch (err) {
+        console.error(err)
+        throw new Error('msg')
     }
 
 
@@ -47,11 +48,11 @@ export const updatePedidos = async (id: string, prazo: Date, material: string, a
 
 export const deletePedidos = async (id: string) => {
     const db = await openDb();
-    try {
+    const pedido = await db.get('select * from pedido where id = ?', id)
+    if(!pedido){
+        throw error;
+    } else {
         await db.run('DELETE FROM pedido WHERE id = ?', id);
-        console.log(`Pedido com ID ${id} deletado com sucesso`);
-    } catch (err: any) {
-        console.error('Erro ao deletar pedido:', err.message);
     }
     db.close();
 };
