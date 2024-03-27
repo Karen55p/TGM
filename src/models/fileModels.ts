@@ -1,8 +1,8 @@
 import { openDb } from './index';
 
-export const selectFile = async() => {
+export const selectFile = async(id: string) => {
     const db = await openDb();
-    const rows = await db.all('SELECT * FROM upload');
+    const rows = await db.get('SELECT path FROM upload where id = ?', id);
         if(rows){
             return (rows);
         }

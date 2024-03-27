@@ -20,7 +20,6 @@ const multerMiddleware = (req: Request, res: Response, next: NextFunction) => {
     });
   };
 
-//fileRouter.get('/uploads/:id', multerMiddleware, fileController.getSingleFile);
+fileRouter.get('/uploads/:id', fileController.getSingleFile);
 fileRouter.post('/upload', multerMiddleware, fileController.createFile);
 fileRouter.get('/aaa', multerMiddleware, express.static('uploads'));
-

@@ -10,12 +10,14 @@ const port = 8001;
 
 let b = `°O°`
 
+app.use('/uploads', express.static('uploads'))
+
 app.use(express.json());
 app.use(clienteRouter);
 app.use(pedidoRouter);
 app.use(userRouter);
 app.use(fileRouter);
-app.use('/b', express.static('upload'));
+
 app.use(main);
 
 app.listen(port, () => {

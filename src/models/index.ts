@@ -79,6 +79,13 @@ export async function main() {
         `);
         console.log(rows);
     }
+
+    const del = async() => {
+        const rows = await db.run(`
+        DELETE FROM upload WHERE id = 2;
+        `);
+        console.log(rows);
+    }
     //SELECT name FROM sqlite_master WHERE type='table';
 
     //drop()
@@ -86,7 +93,7 @@ export async function main() {
     /*insertCliente('aa', 'aa', 123, 'ewq', 'nuh');*/
 
     select()
-
+    //del()
     //tables()
     
 }

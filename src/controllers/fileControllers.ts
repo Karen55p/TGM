@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { insertFile } from '../models/fileModels'; 
-
+import { insertFile, selectFile } from '../models/fileModels'; 
+import path from 'path';
 import { Request as ExpressRequest } from 'express';
 
 interface file {
@@ -22,6 +22,20 @@ export class FileController {
 
         })
     };*/
+
+    getSingleFile(req: Request, res: Response){
+        const { id } = req.params;
+        selectFile(id).then((file) => {
+            console.log(file);
+            if (file) {
+                const fileUrl = `http://localhost:8001/uploads/${file.id}`;
+                //res.sendFile(path.resolve(__dirname, file.path));
+                res.json({ url: fileUrl });
+            } else {
+                res.status(404).send('Arquivo não encontrado');
+            }
+        });
+    };
 
     createFile(req: MulterRequest, res: Response){
         if(req.file){
