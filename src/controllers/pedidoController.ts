@@ -66,27 +66,4 @@ export class PedidoController {
         }
     }
 
-    //fazer função de achar pedido e if para caso não encontre
-
-    /*
-    updatePedido = async (req: Request, res: Response) => {
-    try{
-        const { id } = req.params;
-        const updatedPedido: Pedido = req.body;
-
-        // Localize o pedido usando id e id_cliente
-        const pedido = await findPedido(id, updatedPedido.id_cliente);
-
-        if(pedido) {
-            // Atualize o pedido sem alterar o id_cliente
-            await updatePedidos(id, updatedPedido.prazo, updatedPedido.material, updatedPedido.altura, updatedPedido.largura, updatedPedido.comprimento, updatedPedido.mobilia, updatedPedido.sugest);
-
-            console.log(`Pedido com ID ${id} do cliente com ID ${updatedPedido.id_cliente} atualizado com sucesso!`);
-        } else {
-            console.log(`Pedido com ID ${id} do cliente com ID ${updatedPedido.id_cliente} não encontrado.`);
-        }
-    }catch(error){
-        console.error(error);
-    }
-*/
 };

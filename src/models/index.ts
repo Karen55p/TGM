@@ -47,19 +47,28 @@ export async function main() {
             );
     `);
 
+    await db.run(`
+        CREATE TABLE IF NOT EXISTS upload (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            originalname VARCHAR(255) NOT NULL,
+            path VARCHAR(255) NOT NULL
+        );
+      
+    `)
+
     const pragm = async () => {
     const rows = await db.all('pragma table_info(user)');
     console.log(rows);
     }
 
     const select = async () => {
-        const rows = await db.all('select * from pedido');
+        const rows = await db.all('select * from upload');
         console.log(rows);
         }
 
     const drop = async () =>{
         await db.run(`
-        DROP TABLE user;
+        DROP TABLE upload;
         `);
     console.log('tabela deletada');
     };
@@ -76,7 +85,7 @@ export async function main() {
     //pragm()
     /*insertCliente('aa', 'aa', 123, 'ewq', 'nuh');*/
 
-    //select()
+    select()
 
     //tables()
     

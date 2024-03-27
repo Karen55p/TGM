@@ -58,13 +58,6 @@ export class UserController {
             return res.status(500).json({ error: 'Erro ao deletar usuário.' + err.message });
         }
     };
-
-    /*loginUser = async (req: Request, res: Response) => {
-        const {username, senha} = req.body;
-        login(username, senha).then((rows) => {
-            return res.json(rows);
-        })
-    };*/
     
     loginUser = async (req: Request, res: Response) => {
         const {username, senha} = req.body;
@@ -74,7 +67,6 @@ export class UserController {
         } else {
             return res.status(401).json({message: `Falha no login. Usuário ou senha inválidos.`});
         }
-       //return res.status(200).json({message: `Login realizado de ${username} e senha ${senha} com sucesso`})
     }
 
 };
