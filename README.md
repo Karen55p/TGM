@@ -12,6 +12,7 @@ Sistema de gestão de pedidos para Marcenaria
 - nodemon
 
 # Start
+npm install
 npm start no terminal para rodar o projeto
 
 # Postman
