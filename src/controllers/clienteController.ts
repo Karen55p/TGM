@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { insertCliente } from "../models/clienteModel";
-import { selectCliente } from "../models/clienteModel";
-import { deleteClientes } from "../models/clienteModel";
-import { updateClientes } from "../models/clienteModel";
+import { insertCliente, 
+    selectCliente, 
+    deleteClientes, 
+    updateClientes } from "../models/clienteModel";
 
 interface Cliente {
     id: number,

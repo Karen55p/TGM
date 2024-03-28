@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { insertUser } from "../models/userModel";
-import { selectUser } from "../models/userModel";
-import { updateUsers } from "../models/userModel";
-import { deleteUsers } from "../models/userModel";
-import { login } from "../models/userModel";
+import { insertUser, 
+    selectUser, 
+    updateUsers, 
+    deleteUsers, 
+    login } from "../models/userModel";
 
 interface User {
     id: number,

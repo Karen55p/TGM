@@ -23,4 +23,5 @@ app.use(main);
 app.listen(port, () => {
     console.log(`Servidor ouvindo na porta ${port}...`);
     console.log(b);
+    //console.log(process.on('warning', e => console.warn(e.stack)));
   });

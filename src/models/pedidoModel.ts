@@ -3,11 +3,9 @@ import { error } from 'console';
 
 export const getPedidos = async () => {
     const db = await openDb();
-    try {
         const rows = await db.all('SELECT * FROM pedido');
+    if (rows){
         return (rows);
-    } catch (err: any) {
-        console.error('Erro ao obter dados da tabela pedido:', err.message);
     }
     db.close();
 };

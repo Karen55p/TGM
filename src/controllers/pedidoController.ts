@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { insertPedidos } from "../models/pedidoModel";
-import { getPedidos } from "../models/pedidoModel";
-import { updatePedidos } from "../models/pedidoModel";
-import { deletePedidos } from "../models/pedidoModel";
+import { insertPedidos, 
+    getPedidos, 
+    updatePedidos, 
+    deletePedidos } from "../models/pedidoModel";
 
 interface Pedido{
     id: number,
@@ -62,8 +62,7 @@ export class PedidoController {
         } catch (err: any){
             console.error('Erro ao deletar pedido:', err.message);
             return res.status(500).json({ error: 'Erro ao deletar pedido: ' + err.message });
-       
-        }
-    }
+        };
+    };
 
 };

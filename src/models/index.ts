@@ -55,6 +55,8 @@ export async function main() {
         );
       
     `)
+    /*id_pedido INTEGER not null,
+    FOREIGN KEY (id_pedido) references pedido(id)*/
 
     const pragm = async () => {
     const rows = await db.all('pragma table_info(user)');
