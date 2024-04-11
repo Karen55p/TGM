@@ -6,6 +6,6 @@ export const pedidoRouter = Router();
 const pedidoController = new PedidoController();
 
 pedidoRouter.get('/pedidos', pedidoController.getPedido);
-pedidoRouter.post('/pedido/:id', pedidoController.createPedido);
+pedidoRouter.post('/pedido', pedidoController.createPedido);
 pedidoRouter.put('/pedidos/:id', pedidoController.updatePedido);
 pedidoRouter.delete('/pedido/:id', pedidoController.deletePedido);
