@@ -47,6 +47,7 @@ export const deleteClientes = async (id: string) => {
     if(!cliente){
         throw error;
     } else {
+        await db.run('PRAGMA foreign_keys = ON;');
         await db.run('DELETE FROM cliente WHERE id = ?', id
         );
     }
