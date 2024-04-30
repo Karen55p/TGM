@@ -4,8 +4,10 @@ import { userRouter } from './routes/userRoute';
 import { clienteRouter } from './routes/clienteRoute';
 import { pedidoRouter } from './routes/pedidoRoute';
 import { fileRouter } from './routes/fileRoute';
+import cors from 'cors';
 
 const app = express();
+app.use(cors())
 const port = 8001;
 
 let b = `°O°`
