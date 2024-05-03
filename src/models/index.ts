@@ -94,7 +94,7 @@ export async function main() {
     //pragm()
     /*insertCliente('aa', 'aa', 123, 'ewq', 'nuh');*/
 
-    select()
+    //select()
     //del()
     //tables()
     
