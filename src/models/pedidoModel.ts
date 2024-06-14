@@ -10,6 +10,15 @@ export const getPedidos = async () => {
     db.close();
 };
 
+export const selectSinglePedido = async(id: string) => {
+    const db = await openDb();
+    const rows = await db.get('SELECT * FROM pedido where id = ?', id);
+        if(rows){
+            return (rows);
+        }
+        db.close();
+};
+
 export const insertPedidos = async (prazo: Date, material: string, altura: number, largura: number, comprimento: number, mobilia: string, sugest: string, id_cliente: number) => {
     const db = await openDb();
 

@@ -26,6 +26,15 @@ export const selectCliente = async () => {
         db.close();
 };
 
+export const selectSingleCliente = async(id: string) => {
+    const db = await openDb();
+    const rows = await db.get('SELECT * FROM cliente where id = ?', id);
+        if(rows){
+            return (rows);
+        }
+        db.close();
+};
+
 export const updateClientes = async (id: string, nome: string, telefone: string, cpf: number, endereco: string, obs: string) => {
     const db = await openDb();
     const cliente = await db.get('select * from cliente where id = ?', [id])

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { insertPedidos, 
+import { insertPedidos,
+    selectSinglePedido, 
     getPedidos, 
     updatePedidos, 
     deletePedidos } from "../models/pedidoModel";
@@ -21,6 +22,13 @@ export class PedidoController {
     getPedido(req: Request, res: Response){
         getPedidos().then((rows) => {
             return res.json(rows);   
+        })
+    };
+
+    getSinglePedido(req: Request, res: Response){
+        const { id } = req.params;
+        selectSinglePedido(id).then((rows) => {
+            return res.json(rows);
         })
     };
 

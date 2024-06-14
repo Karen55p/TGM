@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { insertUser, 
     selectUser, 
+    selectSingleUser,
     updateUsers, 
     deleteUsers, 
     login } from "../models/userModel";
@@ -31,6 +32,13 @@ export class UserController {
         selectUser().then((rows) => {
             return res.json(rows);
         })
+    };
+
+    getSingleUser(req: Request, res: Response){
+            const { id } = req.params;
+            selectSingleUser(id).then((rows) => {
+                return res.json(rows);
+            })
     };
 
     updateUser = async (req: Request, res: Response) => {

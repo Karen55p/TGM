@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { insertCliente, 
     selectCliente, 
+    selectSingleCliente,
     deleteClientes, 
     updateClientes } from "../models/clienteModel";
 
@@ -17,6 +18,13 @@ export class ClienteController {
 
     getCliente(req: Request, res: Response){
         selectCliente().then((rows) => {
+            return res.json(rows);
+        })
+    };
+
+    getSingleCliente(req: Request, res: Response){
+        const { id } = req.params;
+        selectSingleCliente(id).then((rows) => {
             return res.json(rows);
         })
     };

@@ -26,6 +26,15 @@ export const selectUser = async () => {
     db.close();
 };
 
+export const selectSingleUser = async(id: string) => {
+    const db = await openDb();
+    const rows = await db.get('SELECT * FROM user where id = ?', id);
+        if(rows){
+            return (rows);
+        }
+        db.close();
+};
+
 export const updateUsers = async (id: string, userName: string, email: string, nivel: string, senha: string) => {
     const db = await openDb();
     const user = await db.get('select * from user where id = ?', id)
@@ -35,7 +44,7 @@ export const updateUsers = async (id: string, userName: string, email: string, n
     try {
         await db.run(
             'UPDATE user SET userName = ?, email = ?, nivel = ?, senha = ? WHERE id = ?',
-            [userName, email, senha, nivel, id]
+            [userName, email, nivel, senha, id]
         );
         console.log(`Usuário com ID ${id} atualizado com sucesso!`);
     } catch (err: any) {

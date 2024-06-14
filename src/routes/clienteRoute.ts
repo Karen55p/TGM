@@ -9,3 +9,4 @@ clienteRouter.get('/clientes', clienteController.getCliente);
 clienteRouter.post('/cliente', clienteController.createCliente);
 clienteRouter.put('/cliente/:id', clienteController.updateCliente);
 clienteRouter.delete('/cliente/:id', clienteController.deleteCliente);
+clienteRouter.get('/cliente/:id', clienteController.getSingleCliente);
